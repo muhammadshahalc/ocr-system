@@ -159,37 +159,14 @@ CSV output (if enabled) is written to `data/extracted_reports.csv` (appends rows
 
 ---
 
-## 8) Notes & tips
 
-* **Prompt unchanged:** The prompt in `extractor.py` is intentionally left as you wrote it. I did not modify it.
-* **Temporary files:** The server uses temporary files; they are cleaned up after processing.
-* **Large files:** If processing fails, check server logs. Consider increasing timeouts or splitting very large PDFs into smaller pages.
-* **Unit canonicalization & validation:** Not included by default — recommended next step before production.
-* **Concurrency:** `uvicorn` + FastAPI handle concurrent requests; if you expect high volume, run with multiple workers or behind a production ASGI server.
 
 ---
 
-## 9) Troubleshooting
+##  Troubleshooting
 
 * `400/500` errors — check terminal logs for exception details.
 * `OPENAI_API_KEY missing` — ensure `.env` exists and app restarted after changes.
 * `pdfplumber` errors on unusual PDFs — try converting the PDF to images first (tooling/scripts can be added).
 
----
-
-## 10) Next steps (recommended)
-
-* Add unit standardization (mmol/L → mg/dL etc.).
-* Add canonical test-name mapping (Hb → Hemoglobin) before saving results.
-* Add validation of model output (Pydantic models).
-* Add optional RAG/Pinecone retrieval if you want context-guided extraction.
-* Add authentication (API key or bearer token) for production.
-
----
-
-If you want, I can now:
-
-* Create a **minimal `main.py`** example (exact code used by your FastAPI endpoint) for the repo, or
-* Add **Pydantic response models** to validate the extractor output before returning.
-
-Which would you like next?
+-
